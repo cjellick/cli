@@ -34,6 +34,8 @@ type Context struct {
 	Interval       int64
 	BatchSize      int64
 	ConfirmUpgrade bool
+	WaitFlag       bool
+	WaitState      string
 }
 
 func (c *Context) sanitizedProjectName() string {

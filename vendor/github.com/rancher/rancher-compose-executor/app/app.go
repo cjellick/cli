@@ -31,6 +31,8 @@ func (p *RancherProjectFactory) Create(c *cli.Context) (*project.Project, error)
 		AccessKey:  c.GlobalString("access-key"),
 		SecretKey:  c.GlobalString("secret-key"),
 		PullCached: c.Bool("cached"),
+		WaitFlag:   c.GlobalBool("wait"),
+		WaitState:  c.GlobalString("wait-state"),
 		Uploader:   &rancher.S3Uploader{},
 		Args:       c.Args(),
 	}

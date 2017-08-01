@@ -27,6 +27,17 @@ func (r *RancherService) Wait(service *client.Service) error {
 	})
 }
 
+func (r *RancherService) WaitState(service *client.Service) error {
+	service, err := r.context.Client.Service.ById(service.Id)
+
+	if service.HealthState != r.context.WaitState {
+		if err = r.WaitState(service); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 func (r *RancherService) waitInstance(instance *client.Instance) error {
 	return r.WaitFor(&instance.Resource, instance, func() string {
 		return instance.Transitioning
