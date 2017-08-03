@@ -72,7 +72,7 @@ func (p *projectFactory) Create(c *cli.Context) (*project.Project, error) {
 	}
 
 	factory := &app.RancherProjectFactory{}
-	proj, err := factory.Create(c)
+	proj, err := factory.Create(c, w)
 	if err != nil {
 		return nil, err
 	}

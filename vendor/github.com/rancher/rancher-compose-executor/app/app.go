@@ -21,7 +21,11 @@ import (
 type RancherProjectFactory struct {
 }
 
-func (p *RancherProjectFactory) Create(c *cli.Context) (*project.Project, error) {
+type WaiterRCE interface {
+	Wait() error
+}
+
+func (p *RancherProjectFactory) Create(c *cli.Context, w WaiterRCE) (*project.Project, error) {
 	context := &rancher.Context{
 		Context: project.Context{
 			ResourceLookup: &lookup.FileResourceLookup{},
